@@ -18,11 +18,35 @@ class Map
 		this.Wall = [];
 		this.Candy = [];
 
+		this.MapObj = []; 
+
 		readTextFile(mapPath);
 	}
 
 	GenerateMap()
 	{
+
+		this.MapObj.clear();
+		this.MapObj.push([]);
+		var cols = 0;
+		var row = 0;
+
+		for ( var i = 0; i < currentMap.length; i++)
+		{
+			if ( currentMap[i] == '\n' )
+			{
+				row++;
+			}
+			else
+			{
+				
+			}
+		}
+
+
+
+
+
 		console.log("generate ");
 		var x = 0;
 		var y = 0;
