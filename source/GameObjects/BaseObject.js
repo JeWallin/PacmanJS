@@ -10,7 +10,7 @@ class BaseObject
 		this.colour = "#FF0000";
 	}
 
-	Render(screen)
+	Render(screen, mouth, rotation)
 	{
 		var style = screen.fillStyle;
 
@@ -19,13 +19,13 @@ class BaseObject
 		//screen.fillRect(this.x*this.size + border, this.y*this.size + border, this.size - 2*border, this.size - 2*border);
 
 		//screen.fillStyle = style;
-
+		var chill = 2*Math.PI-mouth*Math.PI;
 		var radius = this.size/2;
 
 		screen.beginPath();
-		screen.arc(this.MapScale*this.x + this.MapScale/2, this.MapScale*this.y + this.MapScale/2, radius, 0, 2 * Math.PI, false);
+		screen.arc(this.MapScale*this.x + this.MapScale/2, this.MapScale*this.y + this.MapScale/2, radius, rotation + chill, rotation + mouth * Math.PI, false);
 		screen.fill();
-		screen.lineWidth = 5;
+		screen.lineWidth = radius;
 		screen.strokeStyle = this.colour;
 		screen.stroke();
 

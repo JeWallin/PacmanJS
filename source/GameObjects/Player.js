@@ -24,7 +24,8 @@ class Player extends BaseObject
 
 		this.currentDirection = new Direction();
 		this.goalDirection = new Direction();
-		this.moveIntervall = 2;
+		this.moveIntervall = 10;
+		this.timer = 0;
 	}
 
 	SetPositionAndSize(x, y, size)
@@ -75,7 +76,6 @@ class Player extends BaseObject
 
 				if ( this.CanMoveTo(newPos, worldMap ))
 				{
-					console.log("update goal " + newPos.x + ", " + newPos.y );
 					this.goalX = newPos.x;
 					this.goalY = newPos.y;
 				}
@@ -112,6 +112,7 @@ class Player extends BaseObject
 				this.y = this.y + movey;
 			}
 			
+			this.timer += 0.5;
 				
 		}
 
@@ -119,7 +120,21 @@ class Player extends BaseObject
 
 	Render(screen)
 	{
-		super.Render(screen);
+		var Rot = 0;
+
+		if ( this.currentDirection.Direction === this.currentDirection.DIRECTIONS.LEFT)
+		{
+			Rot = 1;
+		}
+		else if ( this.currentDirection.Direction === this.currentDirection.DIRECTIONS.UP)
+		{
+			Rot = 1.5;
+		}
+		else if ( this.currentDirection.Direction === this.currentDirection.DIRECTIONS.DOWN)
+		{
+			Rot = 0.5;
+		} 
+		super.Render(screen, 1.875 + Math.sin(this.timer)*0.125, Math.PI * Rot);
 	}
 
 	CanMoveTo(Pos, worldMap)

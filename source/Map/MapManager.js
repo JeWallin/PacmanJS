@@ -37,6 +37,20 @@ class MapManager
 		this.GhostStart = [];
 	}
 
+	Reset()
+	{
+		this.mapString = {};
+		this.subscriber = [];
+
+		this.WorldMap = [];
+		// candy
+		this.WorldObjects = [];
+		// PC and NPC
+		this.PlayerStart = {};
+		this.GhostStart = [];
+		mapstringglobal = undefined;
+	}
+
 	IsWalkable(x, y)
 	{
 		if ( y < this.WorldMap.length && !( this.WorldMap[y] === undefined) && x < this.WorldMap[y].length)
@@ -52,6 +66,8 @@ class MapManager
 
 	LoadMap(MapFile)
 	{
+		this.Reset();
+		
 		var input = MapFile.target;
 
 	    var reader = new FileReader();
