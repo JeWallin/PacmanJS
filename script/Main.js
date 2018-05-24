@@ -4,35 +4,33 @@ var game;
 
 function main()
 {
-	game = new Game("screen");
-	game.Init();
+	game = new Wackman("screen");
 
 	tick();
 }
 
 function keyDown(event)
 {
-	game.InputUpdated(event, true);
+	game.KeyEvent(event, true);
 }
 
 function keyUp(event)
 {
-	game.InputUpdated(event, false);
+	game.KeyEvent(event, false);
 }
 
 function loadMap(map)
 {
-	game.LoadMap(map);
+	game.mapManager.LoadMap(map);
 }
 
-function MapIsLoaded()
+function MapIsloaded()
 {
-	game.MapIsLoaded();
+	game.mapManager.GenerateMap();
 }
 
 function tick()
 {
-
 	game.Update();
 
 	game.Render();

@@ -28,6 +28,7 @@ class Game
 	{
 		this.map.GenerateMap();
 	}
+	
 	InputUpdated(event, down)
 	{
 		//console.log("InputUpdated called");

@@ -26,8 +26,6 @@ class Map
 	GenerateMap()
 	{
 
-		this.MapObj.clear();
-		this.MapObj.push([]);
 		var cols = 0;
 		var row = 0;
 
