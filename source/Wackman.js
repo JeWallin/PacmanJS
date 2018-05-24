@@ -15,6 +15,7 @@ class Wackman
 		this.player = new Player();
 		this.keyboarder = new KeyBoarder();
 		this.candyList = [];
+		this.ghosts = [];
 	}
 
 	InitGame()
@@ -36,6 +37,15 @@ class Wackman
 			var candy = new Candy();
 			candy.SetPositionAndSize(candyLocations[i].x, candyLocations[i].y, this.Scale);
 			this.candyList.push(candy);
+		}
+
+		var ghostLocations = this.mapManager.GhostStart;
+
+		for ( var i = 0; i < ghostLocations.length; i++)
+		{
+			var ghost = new Ghost();
+			ghost.SetPositionAndSize(ghostLocations[i].x, ghostLocations[i].y, this.Scale);
+			this.ghosts.push(ghost);
 		}
 	}
 
@@ -63,6 +73,8 @@ class Wackman
 			}
 		}
 
+
+
 		if ( this.candyList.length === 0 )
 		{
 			this.InitGame();
@@ -79,6 +91,11 @@ class Wackman
 		for ( var i = 0; i < this.candyList.length; i++)
 		{
 			this.candyList[i].Render(this.screen);
+		}
+
+		for ( var i = 0; i < this.ghosts.length; i++)
+		{
+			this.ghosts[i].Render(this.screen);
 		}
 
 		this.player.Render(this.screen);

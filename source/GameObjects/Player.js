@@ -1,12 +1,4 @@
-class Direction
-{
-	constructor()
-	{
-		this.Direction = 1;
 
-		this.DIRECTIONS = { LEFT: 1, RIGHT: 2, UP: 3, DOWN: 4}
-	}
-}
 
 class Player extends BaseObject
 {
@@ -105,14 +97,16 @@ class Player extends BaseObject
 			{
 				this.x = this.goalX;
 				this.y = this.goalY;
+				this.timer = 0;
 			}
 			else
 			{
 				this.x = this.x + movex;
 				this.y = this.y + movey;
+				this.timer += (2*Math.PI)/(Math.max(this.moveIntervall-1,1));
 			}
 			
-			this.timer += 0.5;
+			
 				
 		}
 
@@ -134,7 +128,7 @@ class Player extends BaseObject
 		{
 			Rot = 0.5;
 		} 
-		super.Render(screen, 1.875 + Math.sin(this.timer)*0.125, Math.PI * Rot);
+		super.Render(screen, 1.875 + Math.cos(this.timer)*0.125, Math.PI * Rot);
 	}
 
 	CanMoveTo(Pos, worldMap)
