@@ -4,7 +4,6 @@ class Wackman
 	constructor(canvasId)
 	{
 		this.mapManager = new MapManager();
-		this.mapManager.AddSubscriber(this);
 
 		this.canvas = document.getElementById(canvasId);
 		this.gameSize = { x: this.canvas.width, y: this.canvas.height };
@@ -16,6 +15,8 @@ class Wackman
 		this.keyboarder = new KeyBoarder();
 		this.candyList = [];
 		this.ghosts = [];
+
+		this.speed = 10;
 	}
 
 	InitGame()
@@ -23,9 +24,10 @@ class Wackman
 		this.Scale = 30;
 
 		this.player = new Player();
-		this.keyboarder = new KeyBoarder();
-		this.candyList = [];
-		
+		this.player.SetSpeed(this.speed);
+		this.candyList.splice(0, this.candyList.length );
+		this.ghosts.splice(0, this.ghosts.length );
+
 		var start = this.mapManager.PlayerStart;
 
 		this.player.SetPositionAndSize(start.x, start.y, this.Scale);
@@ -44,6 +46,7 @@ class Wackman
 		for ( var i = 0; i < ghostLocations.length; i++)
 		{
 			var ghost = new Ghost();
+			ghost.SetDelayAndSmart(this.speed, 50+(i*25));
 			ghost.SetPositionAndSize(ghostLocations[i].x, ghostLocations[i].y, this.Scale);
 			this.ghosts.push(ghost);
 		}
@@ -73,7 +76,18 @@ class Wackman
 			}
 		}
 
+		for ( var i = 0; i < this.ghosts.length; i++ )
+		{
+			if ( BaseObjectCollision(this.player, this.ghosts[i]) )
+			{
+				this.InitGame();
+			}
+		}
 
+		for( var i = 0; i < this.ghosts.length; i++)
+		{
+			this.ghosts[i].Update(this.mapManager, this.player );
+		}
 
 		if ( this.candyList.length === 0 )
 		{

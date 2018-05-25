@@ -29,6 +29,11 @@ function MapIsloaded()
 	game.mapManager.GenerateMap();
 }
 
+function InitGameNow()
+{
+	game.InitGame();
+}
+
 function tick()
 {
 	game.Update();

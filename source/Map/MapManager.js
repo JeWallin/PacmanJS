@@ -1,11 +1,4 @@
-class cord
-{
-	constructor(x, y)
-	{
-		this.x = x;
-		this.y = y;
-	}
-}
+
 class position
 {
 	constructor()
@@ -27,7 +20,6 @@ class MapManager
 	constructor()
 	{
 		this.mapString = {};
-		this.subscriber = [];
 
 		this.WorldMap = [];
 		// candy
@@ -40,7 +32,6 @@ class MapManager
 	Reset()
 	{
 		this.mapString = {};
-		this.subscriber = [];
 
 		this.WorldMap = [];
 		// candy
@@ -58,12 +49,6 @@ class MapManager
 		else
 			return false;
 	}
-
-	AddSubscriber(subscriber)
-	{
-		this.subscriber.push(subscriber);
-	}
-
 	LoadMap(MapFile)
 	{
 		this.Reset();
@@ -82,18 +67,31 @@ class MapManager
 
 	NotifySubscribers()
 	{
-		for( var i = 0; i < this.subscriber.length; i++)
+		//console.log("Hi");
+		//for( var i = 0; i < this.subscriber.length; i++)
 		{
-			this.subscriber[i].Notify(this);
+			//this.subscriber[i].Notify(this);
 		}
+
+		InitGameNow();
+	}
+
+	ResetVarialbes()
+	{
+		this.GhostStart.splice(0, this.GhostStart.length);
+		this.WorldObjects.splice(0, this.WorldObjects.length);
 	}
 
 	GenerateMap()
 	{
+		this.ResetVarialbes();
+
 		this.mapString = mapstringglobal;
 
 		var x = 0;
 		var y = 0;
+
+
 		this.WorldMap.push([]);
 
 		for (var i = 0; i < this.mapString.length; i++)

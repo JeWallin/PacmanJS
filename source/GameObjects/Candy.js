@@ -17,6 +17,6 @@ class Candy extends BaseObject
 
 	Render(screen)
 	{
-		super.Render(screen, 2, Math.PI*0);
+		super.Render(screen, 2, 0);
 	}
 }

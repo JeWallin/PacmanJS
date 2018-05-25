@@ -111,7 +111,10 @@ class Player extends BaseObject
 		}
 
 	}
-
+	SetSpeed( speed )
+	{
+		this.moveIntervall = speed;
+	}
 	Render(screen)
 	{
 		var Rot = 0;
