@@ -21,7 +21,7 @@ class Wackman
 
 	InitGame()
 	{
-		this.Scale = 30;
+		this.Scale = 16;
 
 		this.player = new Player();
 		this.player.SetSpeed(this.speed);
