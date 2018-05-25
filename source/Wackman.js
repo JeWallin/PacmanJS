@@ -46,7 +46,7 @@ class Wackman
 		for ( var i = 0; i < ghostLocations.length; i++)
 		{
 			var ghost = new Ghost();
-			ghost.SetDelayAndSmart(this.speed, 50+(i*25));
+			ghost.SetDelayAndSmart(this.speed+1, 50+(i*25));
 			ghost.SetPositionAndSize(ghostLocations[i].x, ghostLocations[i].y, this.Scale);
 			this.ghosts.push(ghost);
 		}
