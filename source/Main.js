@@ -22,16 +22,22 @@ function keyUp(event)
 function loadMap(map)
 {
 	game.mapManager.LoadMap(map);
+
 }
 
 function MapIsloaded()
 {
 	game.mapManager.GenerateMap();
+	var playme = new Audio("content/audio/start.wav");
+	playme.play();
+
 }
 
 function InitGameNow()
 {
 	game.InitGame();
+
+	
 }
 
 function tick()

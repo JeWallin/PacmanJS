@@ -26,7 +26,7 @@ class Player extends BaseObject
 		this.y = y;
 		this.goalX = x;
 		this.goalY = y;
-		this.size = size/1.5;
+		this.size = size;
 		this.MapScale = size;
 	}
 	
@@ -115,23 +115,33 @@ class Player extends BaseObject
 	{
 		this.moveIntervall = speed;
 	}
-	Render(screen)
+	Render(screen, player1, player2)
 	{
 		var Rot = 0;
 
 		if ( this.currentDirection.Direction === this.currentDirection.DIRECTIONS.LEFT)
 		{
-			Rot = 1;
+			Rot = 180;
 		}
 		else if ( this.currentDirection.Direction === this.currentDirection.DIRECTIONS.UP)
 		{
-			Rot = 1.5;
+			Rot = 270;
 		}
 		else if ( this.currentDirection.Direction === this.currentDirection.DIRECTIONS.DOWN)
 		{
-			Rot = 0.5;
+			Rot = 90;
 		} 
-		super.Render(screen, 1.875 + Math.cos(this.timer)*0.125, Math.PI * Rot);
+
+		var Dif = Math.abs(this.goalX - this.x) + Math.abs(this.goalY - this.y);
+		if( Dif > 0.5)
+		{
+			super.DrawImage(screen, player2, Rot);
+		}
+		else
+		{
+			super.DrawImage(screen, player1, Rot);
+		}
+		
 	}
 
 	CanMoveTo(Pos, worldMap)

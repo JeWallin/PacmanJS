@@ -16,7 +16,7 @@ class Ghost extends BaseObject
 		this.y = y;
 		this.goalX = x;
 		this.goalY = y;
-		this.size = size/2;
+		this.size = size;
 		this.MapScale = size;
 		this.direction = new Direction();
 
@@ -152,9 +152,9 @@ class Ghost extends BaseObject
 			this.y = this.y + movey;
 		}
 	}
-	Render(screen)
+	Render(screen, image)
 	{
-		super.Render(screen, 2, 0);
+		super.DrawImage(screen, image, 0);
 	}
 
 	CanMoveToAndIsNotTheBest(best, test, worldMap)
@@ -164,7 +164,6 @@ class Ghost extends BaseObject
 
 	CanMoveTo(Pos, worldMap)
 	{
-		console.log(Pos);
 		return worldMap.IsWalkable(Pos.x, Pos.y);
 	}
 
@@ -305,9 +304,9 @@ function AstarNextPick(worldMap, start, goal)
 
 	for ( var y = 0; y < mapData.length; y++)
 	{
-		for ( var x = 0; x < mapData.length; x++)
+		for ( var x = 0; x < mapData[y].length; x++)
 		{
-			var currentNode = mapData[x][y];
+			var currentNode = mapData[y][x];
 			if (!(currentNode === undefined))
 			{
 				if ( currentNode.walkable )
@@ -328,6 +327,7 @@ function AstarNextPick(worldMap, start, goal)
 	var currentNodeIndex = GetNode(openList, start.x, start.y);
 
 	var node = openList[currentNodeIndex];
+
 	node.SetCostToStart(0);
 	openList.splice(currentNodeIndex,1);
 

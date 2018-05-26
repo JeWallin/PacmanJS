@@ -10,7 +10,6 @@ class KeyBoarder
 
 	InputUpdated(key, isDown)
 	{
-		console.log("Setting : " + key + " to " + isDown);
 		this.keyState[key] = isDown;
 	}
 

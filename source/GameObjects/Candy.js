@@ -11,12 +11,12 @@ class Candy extends BaseObject
 	{
 		this.x = x;
 		this.y = y;
-		this.size = size/3;
+		this.size = size/1.5;
 		this.MapScale = size;
 	}
 
-	Render(screen)
+	Render(screen, image)
 	{
-		super.Render(screen, 2, 0);
+		super.DrawImage(screen, image, 0);
 	}
 }
